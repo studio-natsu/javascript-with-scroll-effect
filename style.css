@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Zen+Antique&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /*レスポンシブ対応にする*/
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+/* ===========================
+    背景や全体の幅
+=========================== */
+body {
+    height: 100%;
+    width: 100%;
+    background-image: url("./images/backimage.jpg");
+    background-size: cover;         /* 画像サイズをカバーし全体をうつす */
+    background-position: center;    /* 画像の中央を表示  */
+    /* background-repeat: no-repeat;   繰り返し防止 */
+    background-attachment: fixed;   /* スクロールしても一定に保つ */
+}
+
+/* ===========================
+    黒みがかったオーバーレイ
+=========================== */
+body::after {
+    content: "";
+    position: absolute;     /* 絶対値で位置を決める */
+    display: block;
+    background-color: black;
+    width: 100%;
+    height: 500vh;
+    top: 0;
+    left: 0; /* 左上を起点とする*/
+    opacity: 0.3; /*透明度*/
+}
+
+/* ===========================
+    タイトル
+=========================== */
+.title {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%); /*要素分もどす*/
+    z-index: 1;
+    font-size: 1.5rem;
+    opacity: 0;
+}
+
+.title.active {
+    opacity: 1;
+    transition: all 3s;
+}
+
+/* ===========================
+    セクション
+=========================== */
+section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;/* はみ出た部分を隠す */
+    z-index: 1;
+}
+
+/* ===========================
+    imgを囲むラップ
+=========================== */
+.img-wrap {
+    position: relative;
+    top: 40%;
+    height: 40%;
+    width: 1px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+
+
+.img-wrap.active {
+  width: 40vw;
+  opacity: 1;
+  transition: opacity 1s, width 2s;
+}
+
+/* ===========================
+    img (img-wrapを親とする）
+=========================== */
+
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40vw;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.6);
+}
+
+/* スケール1.6→1にする。元のサイズに戻す*/
+/* img-wrap、title、active を持つ要素の直下にある img クラスの要素にスタイルを適用*/
+.img-wrap.active > .img {
+  transform: scale(1);
+  transition: 1s ease-out;
+}
+
+/* ===========================
+    h2タグ（セクションの案内）
+=========================== */
+h2 {
+    position: absolute;
+    font-size: 2.3rem;
+    top: 70%;
+    z-index: 2;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: all 0.2s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+   
+}
+
+h2.active{
+    opacity: 1;
+    transition: opacity 3s;
+}
